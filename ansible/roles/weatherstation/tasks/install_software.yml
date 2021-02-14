@@ -1,0 +1,57 @@
+---
+
+# Install data recording and dashboard tools
+
+- name: Architecture
+  debug: 
+    msg: "Arch:  {{ ansible_architecture }} Dist: {{ ansible_distribution }}"
+
+- name: Import Grafana GPG signing key [Debian/Ubuntu]
+  apt_key:
+    url: "https://packages.grafana.com/gpg.key"
+    state: present
+    validate_certs: false
+
+
+- name: Add grafana deb repo
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+  
+
+- name: Update all packages to their latest version
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    force_apt_get: yes
+
+- name: Install a list of packages
+  apt:
+    pkg:
+    - influxdb
+    - influxdb-client
+    - python3-influxdb
+    - python3
+    - python3-pip
+    - adduser
+    - libfontconfig1
+    - grafana
+    - screen
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+
+- name: Install serial
+  pip:
+    name: pyserial
+    executable: pip3
+
+- name: Enable service grafana-server and ensure it is started
+  systemd:
+    name: grafana-server
+    enabled: yes
+    masked: no
+  notify:
+    - restart-grafana-server
+
+

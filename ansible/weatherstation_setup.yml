@@ -4,4 +4,5 @@
   remote_user: pi
   become: yes
   roles:
-    - role: jonathan-setup
+    - role: weatherstation
+      weatherstation_user_password: chanceOfRain

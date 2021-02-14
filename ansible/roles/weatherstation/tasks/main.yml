@@ -1,2 +1,6 @@
 ---
 # tasks file for weatherstation
+
+- include: create_user.yml
+- include: install_software.yml
+#- include: configure_hostname.yml

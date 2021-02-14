@@ -1,2 +1,8 @@
 ---
 # handlers file for weatherstation
+
+- name: restart-grafana-server
+  systemd:
+    name: grafana-server
+    daemon_reload: yes
+    state: restarted

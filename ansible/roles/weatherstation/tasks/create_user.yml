@@ -1,0 +1,17 @@
+---
+
+#Create the user to run the reciever code, requires access to the GPIO pins
+
+- name: Create weatherstation user
+  user:
+    name: "{{ weatherstation_user }}"
+    groups: 
+      - gpio
+      - users
+      - spi
+      - i2c
+    shell: /bin/bash
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    password: "{{ weatherstation_user_password }}"

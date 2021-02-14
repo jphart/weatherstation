@@ -1,2 +1,16 @@
 ---
 # defaults file for weatherstation
+
+weatherstation:
+  hostname: weatherstation.local
+
+weatherstation_user: weather
+weatherstation_user_password: letmein
+
+grafana_version: 7.3.4
+grafana:
+  user: admin
+  password: admin
+
+influx:
+  db_name: weather

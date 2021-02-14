@@ -1,12 +1,18 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Configures a newly imaged raspberry pi as a receiver for sensor data. 
+
+Installs & configures:
+- Grafana - for dashboards
+- InfluxDB - for data storage
+
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Tested on raspbian, but should work on any debian flavour.
 
 Role Variables
 --------------
@@ -16,21 +22,27 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Requires:
+- community.grafana
+
+To install:
+ansible-galaxy collection install community.grafana
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+- hosts: all
+  remote_user: pi
+  become: yes
+  roles:
+    - role: weatherstation
 
 License
 -------
 
-BSD
+Creative Commons Attribution CC BY - https://creativecommons.org/licenses/by/4.0/
 
 Author Information
 ------------------

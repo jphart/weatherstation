@@ -23,12 +23,11 @@ Software
 
 Sensor
 
-* Custom code to read and transmit the sensor data - see Sensor direcory
+* Custom code to read and transmit the sensor data - see Sensor directory
 
 Base station
 
-* Raspbian linux
-* Docker 
+* Raspbian linux 
 * Grafana docker image for dashboard
 * InfluxDB docker image for storing sensor data
 * Custom receiver code - See Receiver 
@@ -42,11 +41,19 @@ Setup
 
 How to
 ======
+ 
+For a newly flashed SD card with raspbian:
+
+```shell
+
+ansible-galaxy collection install community.grafana
+ansible-playbook --ask-pass -i hosts.ini weatherstation_setup.yml
+```
+
+or 
 
 1. Copy you id_rsa.pub key to ~/.ssh/authorized_keys on the pi
-2. ansible-playbook -i hosts.ini initial_setup.yml
-or 
-ansible-playbook --ask-pass -i hosts.ini initial_setup.yml
+2. ansible-playbook -i hosts.ini weatherstation_setup.yml
 
 
 

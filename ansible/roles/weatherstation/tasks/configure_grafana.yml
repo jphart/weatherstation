@@ -1,0 +1,28 @@
+---
+
+# Add user
+
+# Add influx datasource
+- name: Create influxdb datasource
+  community.grafana.grafana_datasource:
+    name: "weather-influxdb-datasource"
+    grafana_url: "http://{{ weatherstation.local }}"
+    grafana_user: "{{ grafana.user }}"
+    grafana_password: "{{ grafana.password }}"
+    org_id: "1"
+    ds_type: "influxdb"
+    ds_url: "https://{{ weatherstation.local }}:8086"
+    database: "{{ influx.db_name }}"
+    time_interval: ">10s"
+
+# Import dashboards
+- name: Import Grafana dashboard foo
+  community.grafana.grafana_dashboard:
+    grafana_url: "http://{{ weatherstation.local }}"
+    grafana_user: "{{ grafana.user }}"
+    grafana_password: "{{ grafana.password }}"
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: /path/to/dashboards/foo.json
+

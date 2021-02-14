@@ -1,0 +1,5 @@
+---
+
+- name: Set a hostname
+  hostname:
+    name: "{{ weatherstation.hostname}}}"
